@@ -1,0 +1,47 @@
+﻿Ex0 Server and Client
+
+	You are to make two programs, a client and a server. The server will start and wait for connections. The client will take a IP address as a command line argument and attempt to connect to the server.
+	Once connected a client will begin periodically sending an integer value that it is incrementing. The server will take all received integers and add it to its own integer. Once the server’s integer reaches a certain value, the server will end itself. This functionality will be provided to you through clientMain.c and serverMain.c. Your assignment is to create the underlying networking functions. You will make 2 files, server.c and client.c
+	The networking will be using ipv4 addresses. The sockets should all be non-blocking.
+	Your assignment will be graded using my own clientMain. And serverMain.c, they are identical to what you are given. Feel free to edit and change yours however you want, but I would suggest you keep a fresh copy to run your own testing on.
+	You will be responsible for making server.c and client.c according to the following specifications. You must include all structs and functions detailed below. However you are free to make any extra structs or functions that you believe will help you complete the assignment.
+
+Client.c
+typedef struct Client {
+	int sock;
+	struct timeval tv;
+} Client;
+
+Client *connectAsClient(char *ip);
+	Here you will initialize the Client struct. sock will be a file descriptor of a socket that was made in the domain AF_INET and with the type of SOCK_STREAM. Timeval can be set to 0 seconds. We will want to set ip a sockaddr_in to hold out ip address information. We want this sockaddr_in to connect to the provided ip address. It will be of type AF_INET and bind to port 6969. Then we want to connect our socket with the ip address.
+
+int receiveData(Client *c, void *buffer);
+	checks if there is data to be read from the socket. If there is it reads it into buffer and returns the size of the the data read from the clien’ts socket.
+It returns -1 if there is any issue.
+
+Server
+typedef struct Server {
+	int sock;
+	int maxClients;
+	int *clientSocks;
+	int addrlen;
+	struct sockaddr_in addr;
+	struct timeval tv;
+} Server;
+
+Server* setUpConnections();
+	This function will initialize the server struct. clientSocks will be intialized to the size of maxClients. Timeval can be set to 0 seconds. sock will be initialized with the file descriptor you get from creating a socket. We will be using the communication domain AF_INET. The socket will be of type SOCK_STREAM.
+	You will probably want to set socket options to allow multiple connections. addr will be set to use any address and bound to a macro PORT defined as 6969.
+	The function will bind the socket to the local port and listen to it. Any errors must be detected and the process must be aborted by returning a null pointer. Success will return a pointer to the server struct.
+
+void closeServer(Server *s);
+	Frees all allocated memory of the Server struct and closes all of the sockets being used.
+
+void serverSendReceive(Server *s, void *buffer, int *gotData);
+	This is the largest bulk of the Server’s work. Here it will receive incoming client connections and add them to clientSocks. The server will also check for incoming data from its clients and send this to any other clients that are connected. If a client disconnects it should be removed from clientSocks. 
+	Here it will be useful to use FD_SETS and select() to keep track of connections. Remember we want this to be nonblocking!
+
+Testing
+	It is suggested you do the client first as it is simpler. You will be provided with executables server and client. Once you have your client code compiling, you can test it with my server program or vice versa. Once they are both compiling you should try and test them together.
+	Alternatively once you have your server compiling and ready you can use telnet to test out if it works.
+
