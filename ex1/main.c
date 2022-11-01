@@ -1,7 +1,5 @@
 #define BUFF 1024
-#include <pthread.h>
-#include "data.c"
-#include "input.c"
+#include "inputThread.c"
 
 int main() {
 	if (littleEndian()) {

@@ -1,6 +1,6 @@
 COM = gcc -Wall -w -pedantic -c -g
 
-data: main.c input.c input.h data.c data.h
+data: main.c data.c data.h inputThread.c inputThread.h
 	gcc -o data -g -Wall -w -pedantic main.c
 
 test:

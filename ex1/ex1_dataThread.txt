@@ -2,7 +2,7 @@
 
 	For this exercise you are going to be making a multi-threaded program. Their will be 2 threads, one thread will take input and pack it into a data struct that you will create and copy it into a buffer. The main thread will also have access to the buffer, it will check for data and if present it will unpack the data and display the string contained.
 	The Data struct will essentially be a wrapper for the strings the user is inputting. In this example it may not be necesarry to have the meta-data about the string size, because of null terminating characters. But this struct and the related functions will serve as basis for sending bigger and more complicated data structures through networks.
-	You will be responsible for writing 4 files, data.h, data.c, input.h, input.c. The main thread is already written for you, it uses a mutex to lock the thread when it is checking the buffer and reading from it. Your input thread shall use the same mutex lock to lock itself before performing operations on the buffer as well.
+	You will be responsible for writing 4 files data.h, data.c, inputThread.c and inputThread.h. inputThread will use the data struct so you can #include data.h and data.c. The main thread is already written for you, it uses a mutex to lock the thread when it is checking the buffer and reading from it. Your input thread shall use the same mutex lock to lock itself before performing operations on the buffer as well.
 
 Allowed Headers
 #include <stdio.h>
@@ -20,6 +20,8 @@ typedef struct Data {
 	int bytes;
 	void *arr;
 } Data;
+
+extern bool runningMainThread;
 
 bool littleEndian();
 	return true if your computer is little endian and false if it is big endian.
@@ -39,12 +41,6 @@ void freeData(Data *d);
 Extra
 void *flipEndian(void *buff, int size);
 	takes in an buffer with the size of the data in the buffer. It goes through byte by byte and flips the endianess of the data.
-
-
-
-Input.h
-
-extern bool runningMainThread;
 
 void *inputThread(void *buffer);
 	Receives a shared buffer with a pthread_mutex_t stored in it.  Pull the pthread_mutex_t out and store it. Test your code to make sure that this lock is properly connected to the pthread_mutex_t being used in main.
