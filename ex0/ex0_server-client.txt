@@ -6,14 +6,31 @@
 	Your assignment will be graded using my own clientMain. And serverMain.c, they are identical to what you are given. Feel free to edit and change yours however you want, but I would suggest you keep a fresh copy to run your own testing on.
 	You will be responsible for making server.c and client.c according to the following specifications. You must include all structs and functions detailed below. However you are free to make any extra structs or functions that you believe will help you complete the assignment.
 
-Client.c
+Allowed Headers
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+#include <string.h>
+#include <stdbool.h>
+#include <sys/types.h>
+#include <fcntl.h>
+
+Client.h
 typedef struct Client {
 	int sock;
 	struct timeval tv;
 } Client;
 
+#define BUFF 1024
+	macro defining buffer size.
+Extern Client *c;
+
 Client *connectAsClient(char *ip);
-	Here you will initialize the Client struct. sock will be a file descriptor of a socket that was made in the domain AF_INET and with the type of SOCK_STREAM. Timeval can be set to 0 seconds. We will want to set ip a sockaddr_in to hold out ip address information. We want this sockaddr_in to connect to the provided ip address. It will be of type AF_INET and bind to port 6969. Then we want to connect our socket with the ip address.
+	Here you will initialize the Client struct. sock will be a file descriptor of a socket that was made in the domain AF_INET and with the type of SOCK_STREAM. Timeval can be set to 0 seconds. We will want to set ip a sockaddr_in to hold out ip address information. We want this sockaddr_in to connect to the provided ip address. It will be of type AF_INET. Then we want to connect our socket with the ip address.
 
 int receiveData(Client *c, void *buffer);
 	checks if there is data to be read from the socket. If there is it reads it into buffer and returns the size of the the data read from the clien’ts socket.
@@ -29,9 +46,16 @@ typedef struct Server {
 	struct timeval tv;
 } Server;
 
+#define BUFF 1024
+	macro defining buffer size.
+
+extern void *welcomeMessage;
+extern int welcomeSize;
+extern Server *s;
+
 Server* setUpConnections();
-	This function will initialize the server struct. clientSocks will be intialized to the size of maxClients. Timeval can be set to 0 seconds. sock will be initialized with the file descriptor you get from creating a socket. We will be using the communication domain AF_INET. The socket will be of type SOCK_STREAM.
-	You will probably want to set socket options to allow multiple connections. addr will be set to use any address and bound to a macro PORT defined as 6969.
+	This function will initialize the server struct. clientSocks will be intialized to the size of maxClients. timeval can be set to 1 second. sock will be initialized with the file descriptor you get from creating a socket. We will be using the communication domain AF_INET. The socket will be of type SOCK_STREAM.
+	You will probably want to set socket options to allow multiple connections. addr will be set to use any address.
 	The function will bind the socket to the local port and listen to it. Any errors must be detected and the process must be aborted by returning a null pointer. Success will return a pointer to the server struct.
 
 void closeServer(Server *s);
@@ -40,8 +64,8 @@ void closeServer(Server *s);
 void serverSendReceive(Server *s, void *buffer, int *gotData);
 	This is the largest bulk of the Server’s work. Here it will receive incoming client connections and add them to clientSocks. The server will also check for incoming data from its clients and send this to any other clients that are connected. If a client disconnects it should be removed from clientSocks. 
 	Here it will be useful to use FD_SETS and select() to keep track of connections. Remember we want this to be nonblocking!
+	The return value will be how many bytes were read by the server.
 
 Testing
-	It is suggested you do the client first as it is simpler. You will be provided with executables server and client. Once you have your client code compiling, you can test it with my server program or vice versa. Once they are both compiling you should try and test them together.
-	Alternatively once you have your server compiling and ready you can use telnet to test out if it works.
-
+	You will be provided a Makefile for the code. Feel free to use it. This is the grader will test with. Your code will also be tested with  valgrind for memory leaks.
+	You can set up your server first and test it using telnet.	
