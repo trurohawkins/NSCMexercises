@@ -14,7 +14,6 @@ Allowed Headers
 #include <curses.h>
 #include <termios.h>
 #include <pthread.h>
-#include <time.h>
 
 Data.h
 
@@ -43,6 +42,19 @@ void freeData(Data *d);
 Extra
 void *flipEndian(void *buff, int size);
 	takes in an buffer with the size of the data in the buffer. It goes through byte by byte and flips the endianess of the data.
+
+InputThread.h
+
+typedef BuffLock {
+	pthread_mutex_t *lock;
+	void *buffer,
+} BuffLock;
+
+BuffLock *makeBuffLock();
+	create BuffLock struct, allocated buffer to size of BUFF, and initalize lock.
+
+void freeBuffLock(BuffLock *bl);
+	frees allocated memory for buffer and lock as well as the memory for bl.
 
 void *inputThread(void *buffer);
 	Receives a shared buffer with a pthread_mutex_t stored in it.  Pull the pthread_mutex_t out and store it. Test your code to make sure that this lock is properly connected to the pthread_mutex_t being used in main.

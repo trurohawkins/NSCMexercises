@@ -6,9 +6,5 @@ data: main.c data.c data.h inputThread.c inputThread.h
 test:
 	valgrind --fair-sched=yes --leak-check=full --show-leak-kinds=all ./data
 
-clean:
-	rm *.o
-
 fclean:
-	rm *.o
 	rm data
