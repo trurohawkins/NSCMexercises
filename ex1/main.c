@@ -41,7 +41,7 @@ int main() {
 				Data *read = readData(inputBuffer);
 				if (read) {
 					printf("got data: %s\n", (char*)read->arr); 
-					memset(inputBuffer, 0, read->byteSize + sizeof(int));
+					memset(inputBuffer, 0, read->bytes + sizeof(int));
 					freeData(read);
 				} else {
 					memset(inputBuffer, 0, BUFF + 1);

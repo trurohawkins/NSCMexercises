@@ -13,6 +13,7 @@ Allowed Headers
 #include<stdbool.h>
 #include <curses.h>
 #include <termios.h>
+#include <pthread.h>
 
 Data.h
 
