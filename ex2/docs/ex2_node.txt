@@ -47,7 +47,7 @@ Extras
 
 Receive receipts
 	Change the functionality in your server.c and client.c, so that the client upon receiving a message from the server, echoes it back to the server. The server will not send any more messages to that client until it receives it receipt.
-	There are many ways to do this. Here are some structs you can use that may help you.
+	You should also implement this queue for the client sending message and the server sending reciepts.
 
 Contact Book
 	As a client in a P2P network it can be helpful to have more than one server to connect to. You never know when another node is going to be unavailable. Or some servers may have a stronger signal or more clients connected, both of these can be good indicators of a good node.
