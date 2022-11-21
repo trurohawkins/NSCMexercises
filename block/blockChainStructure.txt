@@ -2,7 +2,7 @@
 	Blockchains are a data structure similar to a linked list. Each block on the chain contains a hash of the previous block on the chain, as well as a hash of its own data. This allows us to determine if a block was changed in the chain, by hashing a block and checking with the stored hash in its successor. 
 	You will use provided SHA256 hashing function to hash and validate your blocks. You will implement a proof of work function (although these are not used in all blockchains). POW functions are used to make sure that it takes time to mine blocks and thus is harder. This is a way to prevent malicious nodes from spreading false blocks over a network by bottle necking them with larger processing times.
 	Ultimately when a block is mined it will be broadcast as data to each node in a connected network, those nodes will then validate the new block with their local chain and broadcast the new block they validated.
-For this Assignment you will be implementing the structure and some of the essential features of a blockchain. 	You will be required to implement 3 structs and 8 functions. A main.c and Makefile will be provided as well as sample output. 
+For this Assignment you will be implementing the structure and some of the essential features of a blockchain. 	You will be required to implement 3 structs and 9 functions. A main.c and Makefile will be provided as well as sample output. 
 	You may structure your files however you want, and use as many helper functions as you deem necessary. You may change the Makefile as you see fit. Your Makefile and my main.c will be used to perform tests on your code. The executable created musst be called  block.
 	You will turn in a folder with your main.c, Makefile, and any other files you create. The structure of your .c and .h files will be calculated in your grade. Remember using good structure is important, functions should be modular and perform singular tasks. Many of the assigned functions can easily be broken down into smaller modular functions.
 
@@ -64,8 +64,12 @@ bool addBlock(Blockchain *bc, Block *b);
 bool validateChain(Blockchain *bc);
 	In this function you go through the chain and check a block to make sure its preHash matches the hashed value of the previous block. You also check to make sure that the block’s dataHash matches a newly computed hash of the block and its data.
 
-void printChain(Blockchain *bc);
-	prints the blocks of the chain. Including their hashes and data
+void printBlock(Block *block)
+	Prints out the information of the block, including their hashes and data (specified with the Block’s data type). In this case we are simply printing out an integr for the data field
+
+
+void printChain(Blockchain *bc, void (*printFunc)(Block*));void 
+	prints the blocks of the chain. Uses the printBlock in this exercise. But can use other print functions in the future to print out more compliacted data within each block.
 
 void freeBlockchain(Blockchain *bc);
 	frees all dynamic memory used for the Blockchain including all data and Blocks
