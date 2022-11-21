@@ -24,11 +24,12 @@ Available Functions
 	sha256.h
 		void sha256Hash(void *data, BYTE *buffer, int byteSize);
 			read byteSize bytes from data and hashes it, storing the hashed data into buffer.
+
 Your Structs
 //our blockchain will be data agnostic, allowing it to have more modular use in the future for whatever type of data we want to put in it
 struct Data {
 	void * arr; 	// data being held 
-	int byteSize; 	//size of data
+	int bytes;	 	//size of data
 }
 
 struct Block {
@@ -44,9 +45,9 @@ struct Block {
 }
 
 struct Blockchain {
-	Block * base; 		//genesis block of the chain, unchanged once chain is initialized
+	Block * base; 	//genesis block of the chain, unchanged once chain is initialized
 	Block *cur;		// the current top of the chain, used for addition of new blocks
-	int len;			// the number of blocks in the chain
+	int len;		// the number of blocks in the chain
 }
 
 
