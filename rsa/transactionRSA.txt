@@ -22,7 +22,7 @@ typedef struct Key {
 } Key;
 
 Key *makeKeyPair();
-	generates 2 random prime numbers and passes them to provided genKeys function which returns an array of integers. publicKey.n = [0], pubicKey.c = [1] privateKey.n = [2]  and privateKey.c = [3]. Store them accordingly into an array of Key structs of size 2.
+	generates 2 random prime numbers and passes them to provided genKeys function which returns an array of 3 integers. publicKey.n = [0], pubicKey.c = [1] privateKey.n = [0]  and privateKey.c = [2]. Store them accordingly into an array of Key structs of size 2.
 
 NUM *cryptData(NUM *data, int len, Key user);
 	Takes in an array of type defined by NUM macro and the length of that array. It also takes in the key to be used for this data. The provided modularExponentiation function will encrypt/decrypt a chunk of data sized as NUM(in the standard case 8 bytes);
