@@ -71,6 +71,6 @@ void freeBlockchain(Blockchain *bc);
 
 void saveChain(char *file, Blockchain *bc);
 	saves blockchain data to disk
-Block *loadChain(char *file);
+Blockchain *loadChain(char *file);
 	loads blockchain data from disk
 
