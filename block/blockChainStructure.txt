@@ -63,8 +63,11 @@ bool addBlock(Blockchain *bc, Block *b);
 bool validateChain(Blockchain *bc);
 	In this function you go through the chain and check a block to make sure its preHash matches the hashed value of the previous block. You also check to make sure that the block’s dataHash matches a newly computed hash of the block and its data.
 
-void printChain(Blockchain *bc);
-	prints the blocks of the chain. Including their hashes and data
+void printBlock(Block *b);
+	Pritns out the member variables of the block struct. In this assignment print out the data as an integer.
+
+void printChain(Blockchain *bc, , void (*printFunc)(Block*));
+	prints the blocks of the chain. The printFunc is a separate function that prints out he block data. It is sent as parameter so in the future when we have blocks with other types of data it is easy to print them out differently.
 
 void freeBlockchain(Blockchain *bc);
 	frees all dynamic memory used for the Blockchain including all data and Blocks
