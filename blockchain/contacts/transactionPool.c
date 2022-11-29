@@ -21,3 +21,14 @@ void printTransactionPool(ContactBook *contacts) {
 	printList(&contacts->transactionPool, "Transaction Pool", printTransaction);
 }
 
+bool compareTransactions(Transaction *t1, Transaction *t2) {
+	if (t1->timestamp == t2->timestamp) {
+		if (t1->amount == t2->amount) {
+			if (compareKeys(t1->sender, t2->sender) && compareKeys(t1->recipient, t2->recipient)) {
+				return true;	
+			}
+		}
+	}
+	return false;
+}
+

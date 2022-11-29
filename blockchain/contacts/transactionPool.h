@@ -13,5 +13,6 @@ void addToPool(ContactBook *contacts, Transaction *t);
 bool searchForTransaction(ContactBook *contacts, Transaction *t);
 bool removeFromTransactions(ContactBook *contacts, Transaction *t);
 void printTransactionPool(ContactBook *contacts);
+bool compareTransactions(Transaction *t1, Transaction *t2);
 
 #endif
