@@ -22,7 +22,7 @@ pub struct Bank<T, U> {
 	lock_box: HashMap<String, Vec<U>>,
 	min_deposit: T
 }
-	You will take the file and change the struct to match the above example. You will need to update your deposit(&mut self, customer: &str, amount: T) function to utilize the HashMap functionality to save a running sum for whomever is depositing. The customer’s name will be the key and you will add the amount to the value. The parameters will saty the same, it will check if the customer is depositing at least min_deposit. If so that it check if the customer has an account, by checking the HashMap for the key corresponding to the name, then it updates the value with the new added deposit.
+	You will take the file and change the struct to match the above example. You will need to update your deposit(&mut self, customer: &str, amount: T) function to utilize the HashMap functionality to save a running sum for whomever is depositing. The customer’s name will be the key and you will add the amount to the value. The parameters will stay the same, it will check if the customer is depositing at least min_deposit. If so that it check if the customer has an account, by checking the HashMap for the key corresponding to the name, then it updates the value with the new added deposit.
 	You will also need to update your impl block. I will not give you this signature as it could be different depending on what Traits you deem necesarry to accomplish the goal. There are many traits in the std library of rust, and you can use many different combinatiosn to accomplish this task. 
 	 Additonally implement the following functions.
 
@@ -92,12 +92,12 @@ Walla, I am terribly sorry but your "pisol" is not here
 - Mr. Wholeman
 
 Banker: Mr. Wholeman
-customer “Walla” item “pisol”
+customer “Walla” item “pistol”
 Here you are Walla, your "pistol"
 - Mr. Wholeman
 
 Banker: Mr. Wholeman
-customer “Koopie” item “jewelwry”
+customer “Koopie” item “jewelery”
 Im sorry you dont have an account here
 - Mr. Wholeman
 
@@ -170,7 +170,7 @@ give me a adjective
 lucky
 give me a noun
 boot
-Walton Woods stood crumblyand scary.
+Walton Woods stood crumbly and scary.
 Dark trees wished the sky, birds were all around use, fear prickled at my fist.
 Then suddenly a lucky light burst from the boot.
 And we were gone
@@ -192,13 +192,16 @@ shape.rs
 	In this file you will implement several traits and structs. The central theme will be about displaying shapes of various sizes on the command line, there will be 3 shapes, a Rectangle a Triangle and a Square. They will all implement the trait Display and the custom trait TwoD. You will then implement another trait Vec2D that is a blanket implementation of TwoD, this adds the functionality of creating a 2D vector from the shape. The will be given the signatures for the implementations and structs below.
 
 pub trait TwoD {
+
 	fn draw(&self) -> String {}
 		/*This function retuns a formatted String that when printed out displays their shape printed out with the sprite char.*/
 
 	fn mid_point(&self) -> (i32, i32) {}
 		/*This functions reutrns the calculated center of the Shape calculated via the implementer’s width and height parameters*/
+
 	fn height(&self) -> u32 {}
 		/*This function acts as a getter for the implemnter’s height member variable*/
+
 }
 
 pub struct Rect {
@@ -211,7 +214,8 @@ impl Rect {
 	pub fn new(width: u32, height: u32, sprite: char) -> Self {}
 }
 
-impl TwoD for Rect {}
+impl TwoD for Rect {
+
 	fn draw(&self) -> String {}
 		/*This function retuns a formatted String that when printed out displays their shape printed out with the sprite char.*/
 
@@ -220,20 +224,11 @@ impl TwoD for Rect {}
 
 	fn height(&self) -> u32 {}
 		/*This function acts as a getter for the implemnter’s height member variable*/
+
 }
-
-
-
-
-
-
-
-
 impl Display for Rect {
 	fn fmt(&self, f: &mut Formatter<'_>) -> Result {}
 }
-
-
 Rect::new(6, 7, '&');
 &&&&&&
 &&&&&&
@@ -281,18 +276,19 @@ impl Triangle {
 }
 
 
+impl TwoD for Triangle 
 
-
-
-impl TwoD for Triangle {
 	fn draw(&self) -> String {}
 		/*This function retuns a formatted String that when printed out displays their shape printed out with the sprite char.*/
+
+
 
 	fn mid_point(&self) -> (i32, i32) {}
 		/*This functions reutrns the calculated center of the Shape calculated via the implementer’s width and height parameters*/
 
 	fn height(&self) -> u32 {}
 		/*This function acts as a getter for the implemnter’s height member variable*/
+
 }
 
 impl Display for Triangle {
@@ -337,6 +333,9 @@ Triangle::new(9, '%')
 mid__point()	(9, 4)
 height()		9
 
+
+
+
 pub struct Circle {
 	radius: f64,
 	sprite: char
@@ -347,6 +346,7 @@ impl Circle {
 }
 
 impl TwoD for Circle {
+
 	fn draw(&self) -> String {}
 		/*This function retuns a formatted String that when printed out displays their shape printed out with the sprite char.*/
 
@@ -354,7 +354,8 @@ impl TwoD for Circle {
 		/*This functions reutrns the calculated center of the Shape calculated via the implementer’s width and height parameters*/
 
 	fn height(&self) -> u32 {}
-		/*This function acts as a getter for the implemnter’s height member variable*/
+		/*This function will calculate the height of the circle*/
+
 }
 
 impl Display for Circle {
@@ -450,7 +451,7 @@ pub trait Vec2D {
 impl<T: TwoD> Vec2D for T {
 
 	fn form(&self) -> Vec<Vec<(i32, i32)>> {}
-		/*This function processes the implementer’s member variables and calls the functions draw(), mid_point(), and height() to produce a 2d vector of Tuples, 1 for each character in the implmenter’s draw() string. Each tuple holds cartesain coordinate values cooresponding to their distance from the middle of the shape’s calculated area*//
+		/*This function processes the implementer’s member variables and calls the functions draw(), mid_point(), and height() to produce a 2d vector of Tuples, 1 for each character in the implmenter’s draw() string. Each tuple holds cartesain coordinate values cooresponding to their distance from the middle of the shape’s calculated area*/
 
 }
 Here examples of Vector output printed one vector per line
@@ -495,7 +496,7 @@ Rect::new(6, 7, '&')
 mine_sweeper.rs
 
 30 pts
-	In this file you will implement the functionality and interface for mine sweeper. You will implement a struct and impl block to define the functionality. The game will be dynamically sized, in that the board and numbe of mines grow with every level completed by flagging all of the bombs. If the player checks a bomb, you reveal all the bombs and they end. Because of the dynamically sized aspect your struct should keep track of the map and mines in a dynamically sized collection, I will leave the implementation of the struct for you to decide, but their will be several methods required for the assignment.
+	In this file you will implement the functionality and interface for mine sweeper. You will implement a struct and impl block to define the functionality. The game will be dynamically sized, in that the board and number of mines grow with every level completed by flagging all of the bombs. If the player checks a bomb, you reveal all the bombs and they end. Because of the dynamically sized aspect your struct should keep track of the map and mines in a dynamically sized collection, I will leave the implementation of the struct for you to decide, but their will be several methods required for the assignment.
 	You may use your inout_coord(size: u8) function from your previous exercises. Or any function you have so far. I will also outline some suggested helper functions that may help guide you, but will not be tested.
 
 impl mine_sweeper {
@@ -508,7 +509,7 @@ impl mine_sweeper {
 		/*draws the current game state, marking empty spaces with ‘_’, unseen spaces with ‘o’. All checked spaces with mines adjacent are marked with numbers. If mine shave been revealed they are drawn as ‘@’. Successful flags are drawn as ‘!’*/
 
 	fn mine_count(&mut self, play: (u8, u8)) 
-		/*couns all of the mines adjacent to play spot (the u8s represent cartesian coordinates in the map). You can also have this function change the map value to change what is drawn. Marking empty spaces and mine couints. It can also be called recursively.*/
+		/*counts all of the mines adjacent to play spot (the u8s represent cartesian coordinates in the map). You can also have this function change the map value to change what is drawn. Marking empty spaces and mine couints. It can also be called recursively.*/
 
 }
 
