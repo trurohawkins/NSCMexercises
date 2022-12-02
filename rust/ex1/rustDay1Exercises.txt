@@ -303,7 +303,7 @@ Triangle::new(5, '#')
   ####### 
  #########
 
-mid_point() 	(5, 2)
+mid_point() 	(4, 2)
 height() 		5
 
 
@@ -315,7 +315,7 @@ Triangle::new(6, '?');
   ????????? 
  ???????????
 
-mid_point		(6, 3)
+mid_point		(5, 3)
 height() 		6
 
 
@@ -330,7 +330,7 @@ Triangle::new(9, '%')
   %%%%%%%%%%%%%%% 
  %%%%%%%%%%%%%%%%%
 
-mid__point()	(9, 4)
+mid__point()	(8, 4)
 height()		9
 
 
