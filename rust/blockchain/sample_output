@@ -1,0 +1,227 @@
+couldn't load blockchain No such file or directory (os error 2)
+nonce: 0
+mined! nonce 94
+ hash: 004b3b0526a6409dbb44dd2fbfb150772bfe2af2a9810e782e459c4a72cbdd63
+ binary hash: 01001011111011101100110101001101000000100111011011101110001001101110110111110111111101100011010000111011110101111111110101010111100101010100110000001111011110001011101000101100111001001010111001011001011110111011100011
+mining block..
+nonce: 0
+mined! nonce 71
+ hash: 00b910b7dd3ce4ff1215de47d5e9f0d521f4455ed66df2a8ae3f65b9d3b93d58
+ binary hash: 0101110011000010110111110111011111001110010011111111100101010111011110100011111010101111010011111000011010101100001111101001000101101111011010110110110111110010101010001010111011111111001011011100111010011101110011111011011000
+block added succesfully
+mining block..
+nonce: 0
+mined! nonce 341
+ hash: 008d7f9ffca037d4f71ebaf1f4ed57efeee2733280e41013805dd388d43acf9a
+ binary hash: 01000110111111111001111111111100101000001101111101010011110111111101011101011110001111101001110110110101111110111111101110111000101110011110010100000001110010010000100111000000010111011101001110001000110101001110101100111110011010
+bad block
+valid chain
+
+NEW CHAIN
+
+couldn't load blockchain No such file or directory (os error 2)
+nonce: 0
+mined! nonce 94
+ hash: 004b3b0526a6409dbb44dd2fbfb150772bfe2af2a9810e782e459c4a72cbdd63
+ binary hash: 01001011111011101100110101001101000000100111011011101110001001101110110111110111111101100011010000111011110101111111110101010111100101010100110000001111011110001011101000101100111001001010111001011001011110111011100011
+mining block..
+nonce: 0
+mined! nonce 258
+ hash: 004c212051bf415e7939d394967ae862512423d81efcb1d85889c8b43953ea72
+ binary hash: 0100110010000110000010100011011111110000011011110111100111100111010011100101001001011011110101110100011000101010001100100100011110110001111011111100101100011101100010110001000100111001000101101001110011010011111010101110010
+block added succesfully
+mining block..
+nonce: 0
+mined! nonce 24
+ hash: 0030bd93dd3db0173076164a7b62a1dbfa2b767532c7fb8afec6e6764c10081c
+ binary hash: 01100001011110110010011110111011111011011000010111110000111011010110100101011110111100010101000011101101111111010101011111011011101011100101100011111111011100010101111111011000110111001101110110100110010000100011100
+block added succesfully
+choosing between ccurrent Chain {
+    blocks: [
+        Block {
+            id: 0,
+            hash: "004b3b0526a6409dbb44dd2fbfb150772bfe2af2a9810e782e459c4a72cbdd63",
+            previous_hash: "genesis",
+            timestamp: 1670419347,
+            data: [],
+            nonce: 94,
+        },
+        Block {
+            id: 1,
+            hash: "00b910b7dd3ce4ff1215de47d5e9f0d521f4455ed66df2a8ae3f65b9d3b93d58",
+            previous_hash: "004b3b0526a6409dbb44dd2fbfb150772bfe2af2a9810e782e459c4a72cbdd63",
+            timestamp: 1670419347,
+            data: [
+                "eggs",
+                "dunk",
+                "eat",
+            ],
+            nonce: 71,
+        },
+    ],
+} and new Chain {
+    blocks: [
+        Block {
+            id: 0,
+            hash: "004b3b0526a6409dbb44dd2fbfb150772bfe2af2a9810e782e459c4a72cbdd63",
+            previous_hash: "genesis",
+            timestamp: 1670419347,
+            data: [],
+            nonce: 94,
+        },
+        Block {
+            id: 1,
+            hash: "004c212051bf415e7939d394967ae862512423d81efcb1d85889c8b43953ea72",
+            previous_hash: "004b3b0526a6409dbb44dd2fbfb150772bfe2af2a9810e782e459c4a72cbdd63",
+            timestamp: 1670419347,
+            data: [
+                "forpo",
+                "klij",
+            ],
+            nonce: 258,
+        },
+        Block {
+            id: 2,
+            hash: "0030bd93dd3db0173076164a7b62a1dbfa2b767532c7fb8afec6e6764c10081c",
+            previous_hash: "004c212051bf415e7939d394967ae862512423d81efcb1d85889c8b43953ea72",
+            timestamp: 1670419347,
+            data: [
+                "pingpong",
+                "meso",
+            ],
+            nonce: 24,
+        },
+    ],
+}
+chose new chain
+Chain {
+    blocks: [
+        Block {
+            id: 0,
+            hash: "004b3b0526a6409dbb44dd2fbfb150772bfe2af2a9810e782e459c4a72cbdd63",
+            previous_hash: "genesis",
+            timestamp: 1670419347,
+            data: [],
+            nonce: 94,
+        },
+        Block {
+            id: 1,
+            hash: "004c212051bf415e7939d394967ae862512423d81efcb1d85889c8b43953ea72",
+            previous_hash: "004b3b0526a6409dbb44dd2fbfb150772bfe2af2a9810e782e459c4a72cbdd63",
+            timestamp: 1670419347,
+            data: [
+                "forpo",
+                "klij",
+            ],
+            nonce: 258,
+        },
+        Block {
+            id: 2,
+            hash: "0030bd93dd3db0173076164a7b62a1dbfa2b767532c7fb8afec6e6764c10081c",
+            previous_hash: "004c212051bf415e7939d394967ae862512423d81efcb1d85889c8b43953ea72",
+            timestamp: 1670419347,
+            data: [
+                "pingpong",
+                "meso",
+            ],
+            nonce: 24,
+        },
+    ],
+}
+mining block..
+nonce: 0
+mined! nonce 4
+ hash: 007fe694cc84fac1d0871a0a62e76b275f74be832901958aea952a3c479cd3ed
+ binary hash: 01111111111001101001010011001100100001001111101011000001110100001000011111010101011000101110011111010111001111011111111010010111110100000111010011100101011000101011101010100101011010101111001000111100111001101001111101101
+block added succesfully
+we are the longest
+Chain {
+    blocks: [
+        Block {
+            id: 0,
+            hash: "004b3b0526a6409dbb44dd2fbfb150772bfe2af2a9810e782e459c4a72cbdd63",
+            previous_hash: "genesis",
+            timestamp: 1670419347,
+            data: [],
+            nonce: 94,
+        },
+        Block {
+            id: 1,
+            hash: "004c212051bf415e7939d394967ae862512423d81efcb1d85889c8b43953ea72",
+            previous_hash: "004b3b0526a6409dbb44dd2fbfb150772bfe2af2a9810e782e459c4a72cbdd63",
+            timestamp: 1670419347,
+            data: [
+                "forpo",
+                "klij",
+            ],
+            nonce: 258,
+        },
+        Block {
+            id: 2,
+            hash: "0030bd93dd3db0173076164a7b62a1dbfa2b767532c7fb8afec6e6764c10081c",
+            previous_hash: "004c212051bf415e7939d394967ae862512423d81efcb1d85889c8b43953ea72",
+            timestamp: 1670419347,
+            data: [
+                "pingpong",
+                "meso",
+            ],
+            nonce: 24,
+        },
+        Block {
+            id: 3,
+            hash: "007fe694cc84fac1d0871a0a62e76b275f74be832901958aea952a3c479cd3ed",
+            previous_hash: "0030bd93dd3db0173076164a7b62a1dbfa2b767532c7fb8afec6e6764c10081c",
+            timestamp: 1670419347,
+            data: [
+                "gelding",
+                "terror two",
+            ],
+            nonce: 4,
+        },
+    ],
+}
+Chain {
+    blocks: [
+        Block {
+            id: 0,
+            hash: "004b3b0526a6409dbb44dd2fbfb150772bfe2af2a9810e782e459c4a72cbdd63",
+            previous_hash: "genesis",
+            timestamp: 1670419347,
+            data: [],
+            nonce: 94,
+        },
+        Block {
+            id: 1,
+            hash: "004c212051bf415e7939d394967ae862512423d81efcb1d85889c8b43953ea72",
+            previous_hash: "004b3b0526a6409dbb44dd2fbfb150772bfe2af2a9810e782e459c4a72cbdd63",
+            timestamp: 1670419347,
+            data: [
+                "forpo",
+                "klij",
+            ],
+            nonce: 258,
+        },
+        Block {
+            id: 2,
+            hash: "0030bd93dd3db0173076164a7b62a1dbfa2b767532c7fb8afec6e6764c10081c",
+            previous_hash: "004c212051bf415e7939d394967ae862512423d81efcb1d85889c8b43953ea72",
+            timestamp: 1670419347,
+            data: [
+                "pingpong",
+                "meso",
+            ],
+            nonce: 24,
+        },
+        Block {
+            id: 3,
+            hash: "007fe694cc84fac1d0871a0a62e76b275f74be832901958aea952a3c479cd3ed",
+            previous_hash: "0030bd93dd3db0173076164a7b62a1dbfa2b767532c7fb8afec6e6764c10081c",
+            timestamp: 1670419347,
+            data: [
+                "gelding",
+                "terror two",
+            ],
+            nonce: 4,
+        },
+    ],
+}

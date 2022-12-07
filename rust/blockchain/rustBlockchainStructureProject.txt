@@ -1,0 +1,89 @@
+﻿Rust: Blockchain Structure
+
+	For this assignment you will be implementing the base structure and functionality of a blockchain. You will recognize a lot of this from the previous C blockchain assignment. Your blockchain will use SHA family encryption to hash the blocks and link them. When you are done with this assignment your blockchain will only need assymetrical key encryption to identify users on the blockchain and networking capabilities to create a decentralized network of blockchains. As such in this assignment the struct will be data agnostic, in that your chain will be able to hold any type of data, not just transactions for a crypto currency.
+
+	You will be required to make 2 structs and 9 functions. You will define your structs and functions in blockchain.rs. You will be given a main.rs that you can use to check your code. You will be graded on successfully compile without errors and correct output and functionality. I will test your code using my own main.rs that may cover extra edge cases. You will only need to turn in your blockchain.rs, Cargo.toml and any other files you deem necesarry to complete the asssignment. I have restricted the crates I will allow you to use for this assignment. The version numbers are only suggestions. If you want to use any other crates let me know beforehand, so I can grant you approval or not. You may not need all of the crates listed below. You may use any Traits available in the crates you have chosen. The ones detailed below are suggestions, feel free to use them or not.
+
+Allowed crates
+serde = { version = "1.0", features = ["derive"] }
+sha2 = "0.10.5"
+sha3 = "0.10.6"
+chrono = "0.4"
+bincode = "1.0"
+log = "0.4"
+hex = "0.4"
+rand = "0.8.5"
+
+Folder Structure
+
+TurnIn/
+	rust/
+		blockchain/
+			Cargo.toml
+			src/
+				blockchain.rs
+				...
+
+
+
+
+
+
+blockchain.rs
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+pub struct Block<T> {
+	pub id: u64,
+	pub hash: String,
+	pub previous_hash: String,
+	pub timestamp: i64,
+	pub data: Vec<T>,
+	pub nonce: u64
+}
+
+
+
+
+
+
+
+
+impl <T: Serialize + for<'a> serde::Deserialize<'a> + Clone> Block<T> {
+	pub fn new(prev: &Block<T>, data: Vec<T>) -> Self {}
+		/* The new function will act as your mining block function. Given the latest block in a chain, and a data set, you will pack them into a new block struct. You will then use a POW algorithm to calculate the nonce of that block. A hash will be approved if it has enough leading zeroes. For testing sake the amount of zeroes will escalate fairly quickly. For every ten blocks you shall require 2 more leading zeroes. The function should display a message when mining begins and when it has completed. */
+
+	pub fn calculate_hash(&self) -> Vec<u8> {}
+		/*This helper function will be used to calculate the hash of a Block. The hash will consist of all of the Block’s member variables except the hash itself, that is id, previous_hsh, timestamp, data and nonce. This function will be called in the creation of a new block as well when the chain needs to check the validity of new blocks, or itself as a chain.*/
+
+}
+
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+pub struct Chain<T> {
+	pub blocks: Vec<Block<T>>
+}
+
+impl<T:Serialize + for<'a> Deserialize<'a> + Clone> Chain<T> {
+	pub fn new() -> Self {}
+		/* Instantites a new Chain struct, it attempts to read from file, otherwise it creates a fresh blockchain and genesis block.*/
+
+	pub fn try_add_block(&mut self, block: Block<T>) -> bool {}
+		/* This function takes a new Block and checks whether or not it is valid, using the function is_valid. If the block is valid, it is added to the chain and the function returns true, otherwise the function returns false. */
+
+	fn is_block_valid (&self, block: &Block<T>, prev_block: &Block<T>) -> bool {}
+		/*This function checks if the the new block is valid in the context of the previous_block(which is the newest block currently on the chain). This means checking to see if the new block’s previous hash matches the chain’s latest block and that the block itself is valid. If the both of these conditions are correct, the function returns true. If 1 or both are not met, or any other error occurs,the function returns false. Function should print out any problems there with the block.*/
+
+	pub fn is_valid(&self) -> bool {}
+		/*This function goes through the chain and checks that all of the blocks are valid and in the right order. If this is the case it returns true, otherwise it returns false.*/
+
+	pub fn save_chain(&mut self) {}
+		/* saves the blockchain to disk as the file “blockchain.sav”. */
+
+	pub fn load_chain() -> Self {}
+		/* loads the blockchain  from the file “blockchain.sav”, if the file is not present or you get an error in reading or deserializing return a fresh blockchain with a genesis block. */
+
+}
+
+pub fn choose_chain<'a, T:Serialize + for<'d> Deserialize<'d> + Clone>
+(local: &'a Chain<T>, remote: &'a Chain<T>) -> &'a Chain<T> {}
+		/*This function takes in 2 references, each to a blockchain. It checks that both are valid, if only one chain is valid, that chain is chosen. Otherwise if the new chain is longer it will choose that chain. A reference to the chosen chain is returned. If both chains are invalid it panics.*/
